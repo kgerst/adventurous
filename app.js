@@ -1,39 +1,43 @@
-var express = require("express");
-var fs = require("fs");
-var http = require("http");
-var morgan = require("morgan");
-var path = require("path");
-var rfs = require('rotating-file-stream');
+const logger = require('./logger.js');
+const log = logger.appLogger
+const express = require('express');
+const fs = require('fs');
+const http = require('http');
+const path = require('path');
 
-var app = express();
-var logDirectory = path.join(__dirname, 'log');
+const PORT = 3000;
+const app = express();
 
-function logger() {
-  fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+const staticFiles = function(request, response, next) {
+  var filePath = path.join(__dirname, 'static', request.url);
+  fs.stat(filePath, function(err, fileInfo) {
+    if (err) {
+      next();
+      return;
+    }
 
-  var accessLogStream = rfs('access.log', {
-    interval: '1d',
-    path: logDirectory
+    if (fileInfo.isFile()) {
+      response.sendFile(filePath);
+    } else {
+      next();
+    }
   });
-
-  return morgan("combined", {stream: accessLogStream});
 }
 
-function static() {
-  var publicPath = path.resolve(__dirname, "public");
-  return express.static(publicPath);
-}
+app.use(logger.requests);
+app.use(staticFiles);
 
-app.use(logger());
-app.use(static());
-
-app.get("/", function(request, response) {
-  response.end("home");
+app.get('/', function(request, response) {
+  response.end();
 });
 
 app.use(function(request, response) {
   response.statusCode = 404;
-  response.end("404");
+  response.end('404');
 });
 
-app.listen(3000);
+app.use(logger.errors);
+
+app.listen(PORT, function() {
+  log.info('listening on port ' + PORT);
+});
