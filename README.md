@@ -1,4 +1,5 @@
-![https://travis-ci.org/kgerst/adventurous](https://api.travis-ci.org/kgerst/adventurous.svg?branch=master)
+[![Build Status](https://api.travis-ci.org/kgerst/adventurous.svg?branch=master)](https://travis-ci.org/kgerst/adventurous)
+[![Coverage Status](https://coveralls.io/repos/github/kgerst/adventurous/badge.svg?branch=master)](https://coveralls.io/github/kgerst/adventurous?branch=master)
 # adventurous
 
 ## testing 
