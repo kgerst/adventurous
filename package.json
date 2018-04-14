@@ -1,0 +1,26 @@
+{
+  "name": "adventurous",
+  "version": "1.0.0",
+  "description": "## testing - testing framework: [Mocha](https://mochajs.org/) - assertion library: [Chai](http://www.chaijs.com/) - code coverage: [istanbul](https://istanbul.js.org/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha --timeout=3000",
+     "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kgerst/adventurous.git"
+  },
+  "author": "Kim Gerst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kgerst/adventurous/issues"
+  },
+  "homepage": "https://github.com/kgerst/adventurous#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "mocha": "^5.1.0",
+    "nyc": "^11.6.0"
+  }
+}
