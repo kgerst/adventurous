@@ -6,3 +6,9 @@
 - testing framework: [Mocha](https://mochajs.org/)
 - assertion library: [Chai](http://www.chaijs.com/)
 - code coverage: [istanbul](https://istanbul.js.org/)
+
+## Log Viewer
+```
+npm install --global json-log-viewer
+jv logs/app.log
+```

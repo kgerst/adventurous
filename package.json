@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "nyc --reporter=html --reporter=text mocha --timeout=3000",
+    "test": "nyc --reporter=text mocha --timeout=1000",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -22,7 +22,8 @@
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
     "mocha": "^5.1.0",
-    "nyc": "^11.6.0"
+    "nyc": "^11.6.0",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "connect-logger": "0.0.1",
