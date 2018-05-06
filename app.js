@@ -1,9 +1,13 @@
+const apiRouter = require('./routes/api.js');
+const bodyParser = require('body-parser');
 const logger = require('./logger.js');
 const log = logger.appLogger
 const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./api/swagger.json');
 
 const debug = require('debug')('adventurous')
 const name = 'adventurous-app'
@@ -14,7 +18,9 @@ const app = express();
 app.use(logger.requests);
 app.use(express.static('static'));
 
-// app.get('/', function(request, response) {});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(bodyParser.json());
+app.use(apiRouter);
 
 app.use(function(request, response) {
   response.statusCode = 404;
