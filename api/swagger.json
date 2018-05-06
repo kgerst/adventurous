@@ -1,0 +1,159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Pages API",
+    "description": "The API for a Choose Your Own Adventure Story",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Pages",
+      "description": "API for pages in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/pages": {
+      "post": {
+        "tags": [
+          "Pages"
+        ],
+        "description": "Create new page in system",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "body",
+            "description": "Page that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "New page is created",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}": {
+      "parameters": [
+        {
+          "name": "pageId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the Page that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "summary": "Get page with given ID",
+        "responses": {
+          "200": {
+            "description": "Page is found",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete page with given ID",
+        "tags": [
+          "Pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Page is deleted",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update page with give ID",
+        "tags": [
+          "Pages"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "body",
+            "description": "Page with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Page is updated",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Page": {
+      "required": [
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "choices": {
+          "type": "array",
+          "$ref": "#/definitions/Choice"
+        }
+      }
+    },
+    "Choice": {
+      "required": [
+        "nextPage",
+        "text",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "nextPageId": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
