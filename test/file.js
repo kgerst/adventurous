@@ -9,10 +9,13 @@ describe('static file response', function() {
   var server;
   var request;
   var testFileContents;
+  
+  before(function() {
+  var filePath = path.join(__dirname, '../static', 'index.html');
+  testFileContents = fs.readFileSync(filePath).toString('ascii');
+  });
 
   beforeEach(function() {
-    var filePath = path.join(__dirname, '../static', 'index.html');
-    testFileContents = fs.readFileSync(filePath).toString('ascii');
     server = require('../app');
     request = require('supertest')(server)
       .get('/index.html')
