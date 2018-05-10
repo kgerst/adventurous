@@ -12,3 +12,8 @@
 npm install --global json-log-viewer
 jv logs/app.log
 ```
+
+## Run End to End Tests
+```
+./node_modules/.bin/db-migrate up --env test && ./node_modules/.bin/jasmine-node --verbose --captureExceptions ./spec/
+```

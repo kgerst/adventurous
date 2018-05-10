@@ -1,0 +1,18 @@
+{ 
+   "test": {
+     "driver": "sqlite3",
+     "filename": "/var/tmp/adventurous.test.sqlite"
+   },
+   "dev": {
+     "driver": "sqlite3",
+     "filename": "/var/tmp/adventurous.dev.sqlite"
+   },
+
+   "production": {
+     "driver": "mysql",
+     "host": "localhost",
+     "user": "adventurous",
+     "password": "LmMVJcPEN5PtrTfr",
+     "database": "adventurous"
+   }
+ }

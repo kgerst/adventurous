@@ -123,12 +123,16 @@
   "definitions": {
     "Page": {
       "required": [
-        "_id"
+        "_id",
+        "type"
       ],
       "properties": {
         "_id": {
           "type": "string",
           "uniqueItems": true
+        },
+        "text": {
+          "type": "string"
         },
         "choices": {
           "type": "array",
